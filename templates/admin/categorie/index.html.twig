@@ -1,0 +1,38 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}{{parent()}} | Catégories
+{% endblock %}
+
+{% block body %}
+	<h1>Toutes les catégories</h1>
+
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th class="text-center align-middle">Id</th>
+				<th class="text-center align-middle">Name</th>
+				<th class="text-center align-middle">Slug</th>
+				<th class="text-center align-middle">actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for categorie in categories %}
+				<tr>
+					<td class="text-center align-middle">{{ categorie.id }}</td>
+					<td class="text-center align-middle">{{ categorie.name }}</td>
+					<td class="text-center align-middle">{{ categorie.slug }}</td>
+					<td class="text-center align-middle">
+						<a href="{{ path('admin.categorie.edit', {'id': categorie.id}) }}" class="btn btn-primary">Modifier</a>
+						<a href="{{ path('admin.categorie.delete', {'id': categorie.id}) }}" class="btn btn-danger">Supprimer</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('admin.categorie.new') }}" class="btn btn-success">Nouveau</a>
+{% endblock %}

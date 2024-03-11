@@ -5,8 +5,13 @@ namespace App\Entity;
 use App\Repository\RecetteRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 #[ORM\Entity(repositoryClass: RecetteRepository::class)]
+#[UniqueEntity('title')]
+
 class Recette
 {
     #[ORM\Id]
@@ -21,15 +26,16 @@ class Recette
     private ?string $content = null;
 
     #[ORM\Column]
+    #[Assert\Positive()]
     private ?int $duration = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $slug = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int

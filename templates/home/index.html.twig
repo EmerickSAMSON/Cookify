@@ -1,7 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{parent()}} | Accueil{% endblock %}
+{% block title %}
+	{{parent()}}
+	| Accueil
+{% endblock %}
 
 {% block body %}
 
+	<div>
+		<h2>Les nouvelles recettes</h2>
+	</div>
+
+	<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+		{% for item in recette %}
+
+
+			<div class="card">
+				<img src="..." class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">{{item.title}}</h5>
+					<p class="card-text">{{item.content}}</p>
+				</div>
+                <div class="py-3 mx-auto w-100">
+            </div>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}

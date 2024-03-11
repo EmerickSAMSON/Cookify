@@ -36,6 +36,16 @@ class RecetteRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+    /**
+     * @return Recette[] Returns an array of Recette objects
+     */
+    public function findByNewestCreation(){
+        return $this->createQueryBuilder('r')
+                   ->setMaxResults(3)
+                   ->getQuery()
+                   ->getResult();
+    }
+
 //    public function findOneBySomeField($value): ?Recette
 //    {
 //        return $this->createQueryBuilder('r')

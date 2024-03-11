@@ -1,0 +1,40 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}Toutes nos recettes{% endblock %}
+
+{% block body %}
+    <h1>Toutes nos recettes</h1>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="text-center align-middle">Id</th>
+                <th class="text-center align-middle">Titre</th>
+                <th class="text-center align-middle">Contenu</th>
+                <th class="text-center align-middle">Durée</th>
+                <th class="text-center align-middle">Slug</th>
+                <th class="text-center align-middle">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for recette in recettes %}
+            <tr>
+                <td class="text-center align-middle">{{ recette.id }}</td>
+                <td class="text-center align-middle">{{ recette.title }}</td>
+                <td class="text-center align-middle">{{ recette.content }}</td>
+                <td class="text-center align-middle">{{ recette.duration }}</td>
+                <td class="text-center align-middle">{{ recette.slug }}</td>
+                <td class="text-center align-middle">
+                    <a href="{{ path('admin.recette.edit', {'id': recette.id}) }}" class="btn btn-primary">Modifier</a>
+                    <a href="{{ path('admin.recette.delete', {'id': recette.id}) }}" class="btn btn-danger">Supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucune recette trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin.recette.new') }}" class="btn btn-success">Créer une recette</a>
+{% endblock %}
